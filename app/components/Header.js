@@ -1,8 +1,13 @@
 "use client"
 import React from "react";
 import { MoveRight, Download, Sparkles, Code, Coffee } from "lucide-react";
+import { assets } from "@/assets/assets";
 
 function Header() {
+
+  console.log(assets?.user_image);
+  
+
   return (
     <div className="min-h-screen bg-gradient-to-br pt-14 from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center px-4 relative overflow-hidden">
       {/* Background Decorative Elements */}
@@ -23,7 +28,7 @@ function Header() {
               <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden shadow-2xl ring-4 ring-white transform group-hover:scale-105 transition duration-500">
                 <img
                   className="w-full h-full object-cover"
-                  src="/api/placeholder/160/160"
+                  src={assets?.userImg?.src}
                   alt="David Pal Profile"
                 />
               </div>

@@ -1,45 +1,46 @@
 import React from "react";
 import { ExternalLink, Code2, Folder } from "lucide-react";
+import { assets } from "@/assets/assets";
 
 // Mock data for demonstration - replace with your actual workData
 const mockWorkData = [
   {
     title: "E-commerce Platform",
     description: "Modern shopping experience with React & Node.js",
-    bgImage: "/api/placeholder/400/300",
-    tags: ["React", "Node.js", "MongoDB"],
+    bgImage: assets?.e_commerce ?.src,
+    tags: ["React", "Node.js", "MongoDB", "Express"],
   },
   {
-    title: "Task Management App",
+    title: "Mundela Burger Caffe",
     description: "Collaborative project management tool",
-    bgImage: "/api/placeholder/400/300",
-    tags: ["Next.js", "Express", "PostgreSQL"],
+    bgImage: assets?.burger?.src,
+    tags: ["Next.js", "React", "Express", "MongoDB"],
+  },
+  {
+    title: "Market Place Grocery",
+    description: "Analytics dashboard for social platforms",
+    bgImage: assets?.veg?.src,
+    tags: ["React", "Node", "Express", "MongoDB"],
   },
   {
     title: "Portfolio Website",
     description: "Responsive personal portfolio with animations",
-    bgImage: "/api/placeholder/400/300",
-    tags: ["React", "Tailwind", "Framer Motion"],
+    bgImage: assets?.portfolio?.src,
+    tags: ["React", "Tailwind"],
   },
-  {
-    title: "Social Media Dashboard",
-    description: "Analytics dashboard for social platforms",
-    bgImage: "/api/placeholder/400/300",
-    tags: ["Vue.js", "Chart.js", "Firebase"],
-  },
-  {
-    title: "Blog Platform",
-    description: "Content management system for bloggers",
-    bgImage: "/api/placeholder/400/300",
-    tags: ["React", "GraphQL", "Strapi"],
-  },
+  // {
+  //   title: "Blog Platform",
+  //   description: "Content management system for bloggers",
+  //   bgImage: "/api/placeholder/400/300",
+  //   tags: ["React", "GraphQL", "Strapi"],
+  // },
 
-  {
-    title: "Fitness Tracker",
-    description: "Health and fitness monitoring app",
-    bgImage: "/api/placeholder/400/300",
-    tags: ["React Native", "Redux", "MongoDB"],
-  },
+  // {
+  //   title: "Fitness Tracker",
+  //   description: "Health and fitness monitoring app",
+  //   bgImage: "/api/placeholder/400/300",
+  //   tags: ["React Native", "Redux", "MongoDB"],
+  // },
 ];
 
 function Projects() {
