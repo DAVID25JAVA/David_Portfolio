@@ -7,7 +7,7 @@ const mockWorkData = [
   {
     title: "E-commerce Platform",
     description: "Modern shopping experience with React & Node.js",
-    bgImage: assets?.e_commerce ?.src,
+    bgImage: assets?.e_commerce?.src,
     tags: ["React", "Node.js", "MongoDB", "Express"],
   },
   {
@@ -147,7 +147,7 @@ function Projects() {
 
         {/* Show More Button */}
         <div className="flex items-center justify-center">
-          <button className="group flex items-center gap-3   backdrop-blur-sm px-8 py-4 rounded-full border border-white/20 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300  bg-gradient-to-r  from-blue-600  to-indigo-600 hover:text-white">
+          <button className="group cursor-pointer flex items-center gap-3   backdrop-blur-sm px-8 py-4 rounded-full border border-white/20 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300  bg-gradient-to-r  from-blue-600  to-indigo-600 hover:text-white">
             <span className="font-semibold">Show More Projects</span>
             <div className="w-6 h-6 rounded-full border-2 border-current flex items-center justify-center group-hover:rotate-45 transition-transform duration-300">
               <ExternalLink className="w-3 h-3" />

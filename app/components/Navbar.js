@@ -78,9 +78,9 @@ function Navbar() {
               {/* Theme Toggle */}
               <button
                 onClick={() => setIsDarkMode(!isDarkMode)}
-                className="relative p-2 rounded-full bg-white/50 backdrop-blur-sm border border-white/30 shadow-lg hover:shadow-xl transform hover:scale-110 transition duration-300 group"
+                className="relative p-2 cursor-pointer rounded-full bg-white/50 backdrop-blur-sm border border-white/30 shadow-lg hover:shadow-xl transform hover:scale-110 transition duration-300 group"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full opacity-0 group-hover:opacity-20 transition duration-300"></div>
+                <div className="absolute  inset-0 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full opacity-0 group-hover:opacity-20 transition duration-300"></div>
                 {isDarkMode ? (
                   <Sun className="w-5 h-5 text-yellow-600 relative z-10" />
                 ) : (
@@ -92,7 +92,7 @@ function Navbar() {
               <div className="hidden md:block">
                 <button className="group relative overflow-hidden bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300">
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-indigo-700 opacity-0 group-hover:opacity-100 transition duration-300"></div>
-                  <div className="relative flex items-center gap-2">
+                  <div className="relative cursor-pointer flex items-center gap-2">
                     <span>Connect</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition duration-300" />
                   </div>
