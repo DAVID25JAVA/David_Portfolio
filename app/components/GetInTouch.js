@@ -1,5 +1,7 @@
 "use client";
 import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import {
   Send,
   Mail,
@@ -22,10 +24,10 @@ function GetInTouch() {
   });
 
   // Mock toast function for demo - replace with your actual toast import
-  const toast = {
-    success: (message) => console.log(`Success: ${message}`),
-    error: (message) => console.log(`Error: ${message}`),
-  };
+  // const toast = {
+  //   success: (message) => console.log(`Success: ${message}`),
+  //   error: (message) => console.log(`Error: ${message}`),
+  // };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -37,6 +39,10 @@ function GetInTouch() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (!formData?.name || !formData?.email || !formData?.message) {
+      toast.error("Please fill your query !");
+      return;
+    }
     setLoading(true);
 
     const submitData = new FormData();
@@ -109,6 +115,7 @@ function GetInTouch() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-16 px-4">
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="max-w-6xl md:px-6 mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
