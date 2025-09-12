@@ -114,7 +114,7 @@ function Header() {
             {/* Resume Button */}
             <button className="group px-8 py-4 bg-white/70 backdrop-blur-sm border-2 border-gray-300 text-gray-800 rounded-full font-medium shadow-lg hover:shadow-xl hover:border-blue-400 hover:bg-white/90 transform hover:scale-105 transition duration-300">
               <div className="flex items-center gap-3">
-                <a href="https://drive.google.com/file/d/1Yb8mxn5wKLNy9C3PgfUphB-51A04X4qS/view?usp=sharing">
+                <a target="_blank" href="https://drive.google.com/file/d/1Yb8mxn5wKLNy9C3PgfUphB-51A04X4qS/view?usp=sharing">
                   <span>My Resume</span>
                 </a>
                 <Download className="w-5 h-5 group-hover:animate-bounce" />

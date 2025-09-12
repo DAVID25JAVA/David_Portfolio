@@ -10,6 +10,7 @@ import {
   User,
   Briefcase,
   MessageCircle,
+  Braces
 } from "lucide-react";
 
 function Navbar() {
@@ -40,8 +41,8 @@ function Navbar() {
   const menuItems = [
     { name: "Home", href: "#home", icon: Home },
     { name: "Projects", href: "#projects", icon: Briefcase },
+    { name: "Services", href: "#services", icon: Braces },
     { name: "About", href: "#about", icon: User },
-    { name: "Testimonials", href: "#testimonials", icon: MessageCircle },
   ];
 
   return (

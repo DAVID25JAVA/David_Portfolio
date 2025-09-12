@@ -9,24 +9,28 @@ const mockWorkData = [
     description: "Modern shopping experience with React & Node.js",
     bgImage: assets?.e_commerce?.src,
     tags: ["React", "Node.js", "MongoDB", "Express"],
+    link:"https://www.id-surface.com/"
   },
   {
     title: "Mundela Burger Caffe",
-    description: "Collaborative project management tool",
+    description: "Online platform for easy fast-food ordering.",
     bgImage: assets?.burger?.src,
     tags: ["Next.js", "React", "Express", "MongoDB"],
+    link: "https://main.d6o33cmp3sdbq.amplifyapp.com/",
   },
   {
     title: "Market Place Grocery",
-    description: "Analytics dashboard for social platforms",
+    description: "A convenient online marketplace for all your grocery needs.",
     bgImage: assets?.veg?.src,
     tags: ["React", "Node", "Express", "MongoDB"],
+    link:""
   },
   {
     title: "Portfolio Website",
     description: "Responsive personal portfolio with animations",
     bgImage: assets?.portfolio?.src,
-    tags: ["React", "Tailwind"],
+    tags: ["Next.js", "React", "Tailwind"],
+    link:""
   },
   // {
   //   title: "Blog Platform",
@@ -45,7 +49,10 @@ const mockWorkData = [
 
 function Projects() {
   return (
-    <div id="projects" className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-16  ">
+    <div
+      id="projects"
+      className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-16  "
+    >
       <div className="max-w-6xl mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -69,19 +76,21 @@ function Projects() {
             >
               {/* Project Image */}
               <div className="relative overflow-hidden h-48">
-                <img
-                  src={project?.bgImage}
-                  alt={`${project?.title} preview`}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <a href={project.link} target="_blank">
+                  <img
+                    src={project?.bgImage}
+                    alt={`${project?.title} preview`}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg transform scale-75 group-hover:scale-100 transition-transform duration-300">
-                    <ExternalLink className="w-6 h-6 text-blue-600" />
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                      <ExternalLink className="w-6 h-6 text-blue-600" />
+                    </div>
                   </div>
-                </div>
+                </a>
               </div>
 
               {/* Project Content */}

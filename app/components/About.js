@@ -76,38 +76,45 @@ const AboutSection = () => {
               </div>
 
               {/* Education Card */}
-              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/20 hover:transform hover:scale-105 transition duration-300">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 bg-green-100 rounded-lg">
-                    <GraduationCap className="w-6 h-6 text-green-600" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-900">
-                    Education
-                  </h3>
-                </div>
+             <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/20 hover:transform hover:scale-105 transition duration-300">
+  <div className="flex items-center gap-3 mb-6">
+    <div className="p-2 bg-green-100 rounded-lg">
+      <GraduationCap className="w-6 h-6 text-green-600" />
+    </div>
+    <h3 className="text-2xl font-bold text-gray-900">
+      Education
+    </h3>
+  </div>
 
-                <div className="space-y-4">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-3 h-3 bg-green-500 rounded-full mt-2"></div>
-                    <div>
-                      <h4 className="font-bold text-gray-900">
-                        Master of Computer Applications
-                      </h4>
-                      <p className="text-gray-600">CGPA: 8.6</p>
-                    </div>
-                  </div>
+  <div className="space-y-4">
+    <div className="flex items-start gap-4">
+      <div className="flex-shrink-0 w-3 h-3 bg-green-500 rounded-full mt-2"></div>
+      <div>
+        <h4 className="font-bold text-gray-900">
+          Master of Computer Applications
+        </h4>
+        <p className="text-gray-600">
+          Babu Banarasi Das University, Lucknow | Passout: 2024
+        </p>
+        <p className="text-gray-600">CGPA: 8.6</p>
+      </div>
+    </div>
 
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-3 h-3 bg-blue-500 rounded-full mt-2"></div>
-                    <div>
-                      <h4 className="font-bold text-gray-900">
-                        Bachelor of Computer Applications
-                      </h4>
-                      <p className="text-gray-600">Percentage: 73%</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+    <div className="flex items-start gap-4">
+      <div className="flex-shrink-0 w-3 h-3 bg-blue-500 rounded-full mt-2"></div>
+      <div>
+        <h4 className="font-bold text-gray-900">
+          Bachelor of Computer Applications
+        </h4>
+        <p className="text-gray-600">
+          Rajendra Singh Rajju Bhaiya University, Prayagraj | Passout: 2022
+        </p>
+        <p className="text-gray-600">Percentage: 73%</p>
+      </div>
+    </div>
+  </div>
+</div>
+
             </div>
 
             {/* Stats Section */}
