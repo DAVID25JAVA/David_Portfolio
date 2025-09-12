@@ -2,6 +2,7 @@
 import React from "react";
 import { MoveRight, Download, Sparkles, Code, Coffee } from "lucide-react";
 import { assets } from "@/assets/assets";
+import LazyLoad from "react-lazyload";
 
 function Header() {
   const handleScroll = (id) => {
@@ -31,11 +32,13 @@ function Header() {
             <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 rounded-full blur opacity-30 group-hover:opacity-50 transition duration-1000 animate-pulse"></div>
             <div className="relative">
               <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden shadow-2xl ring-4 ring-white transform group-hover:scale-105 transition duration-500">
-                <img
-                  className="w-full h-full object-cover"
-                  src={assets?.userImg?.src}
-                  alt="David Pal Profile"
-                />
+                <LazyLoad>
+                  <img
+                    className="w-full h-full object-cover"
+                    src={assets?.userImg?.src}
+                    alt="David Pal Profile"
+                  />
+                </LazyLoad>
               </div>
               <div className="absolute -bottom-2 -right-2 bg-white rounded-full p-2 shadow-lg">
                 <Sparkles className="w-5 h-5 text-yellow-500 animate-pulse" />
@@ -114,7 +117,10 @@ function Header() {
             {/* Resume Button */}
             <button className="group px-8 py-4 bg-white/70 backdrop-blur-sm border-2 border-gray-300 text-gray-800 rounded-full font-medium shadow-lg hover:shadow-xl hover:border-blue-400 hover:bg-white/90 transform hover:scale-105 transition duration-300">
               <div className="flex items-center gap-3">
-                <a target="_blank" href="https://drive.google.com/file/d/1Yb8mxn5wKLNy9C3PgfUphB-51A04X4qS/view?usp=sharing">
+                <a
+                  target="_blank"
+                  href="https://drive.google.com/file/d/1Yb8mxn5wKLNy9C3PgfUphB-51A04X4qS/view?usp=sharing"
+                >
                   <span>My Resume</span>
                 </a>
                 <Download className="w-5 h-5 group-hover:animate-bounce" />

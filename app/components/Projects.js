@@ -28,9 +28,9 @@ const mockWorkData = [
   {
     title: "Portfolio Website",
     description: "Responsive personal portfolio with animations",
-    bgImage: assets?.portfolio?.src,
+    bgImage: assets?.port?.src,
     tags: ["Next.js", "React", "Tailwind"],
-    link:""
+    link:"https://daviddev-eight.vercel.app/"
   },
   // {
   //   title: "Blog Platform",
