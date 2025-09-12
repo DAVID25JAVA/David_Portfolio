@@ -1,15 +1,19 @@
-"use client"
+"use client";
 import React from "react";
 import { MoveRight, Download, Sparkles, Code, Coffee } from "lucide-react";
 import { assets } from "@/assets/assets";
 
 function Header() {
 
-  console.log(assets?.user_image);
-  
+    const handleScroll = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br pt-14 from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center px-4 relative overflow-hidden">
+    <div id="home" className="min-h-screen bg-gradient-to-br pt-14 from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center px-4 relative overflow-hidden">
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-20 w-32 h-32 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
@@ -20,7 +24,6 @@ function Header() {
       <div className="max-w-6xl mx-auto w-full relative z-10">
         {/* Main Content */}
         <div className="flex flex-col justify-center items-center mx-auto gap-8">
-          
           {/* Profile Image with Animation */}
           <div className="relative group">
             <div className="absolute -inset-4 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 rounded-full blur opacity-30 group-hover:opacity-50 transition duration-1000 animate-pulse"></div>
@@ -40,7 +43,9 @@ function Header() {
 
           {/* Greeting Section */}
           <div className="flex justify-center items-center gap-3 bg-white/70 backdrop-blur-sm rounded-2xl px-6 py-3 shadow-lg border border-white/20">
-            <p className="text-lg md:text-xl font-medium text-gray-800">Hi! I'm David Pal</p>
+            <p className="text-lg md:text-xl font-medium text-gray-800">
+              Hi! I'm David Pal
+            </p>
             <div className="animate-bounce">
               <span className="text-2xl">👋</span>
             </div>
@@ -70,28 +75,30 @@ function Header() {
               <span className="font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                 React.js | Next.js | JavaScript | Tailwind CSS
               </span>
-              . I specialize in turning ideas into clean, interactive user experiences
-              with modern web technologies.
+              . I specialize in turning ideas into clean, interactive user
+              experiences with modern web technologies.
             </p>
           </div>
 
           {/* Tech Stack Pills */}
           <div className="flex flex-wrap justify-center gap-3 max-w-2xl">
-            {['React.js', 'Next.js', 'JavaScript', 'Tailwind CSS'].map((tech, index) => (
-              <span
-                key={index}
-                className="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-full text-sm font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-200 animate-fade-in"
-                style={{ animationDelay: `${index * 150}ms` }}
-              >
-                {tech}
-              </span>
-            ))}
+            {["React.js", "Next.js", "JavaScript", "Tailwind CSS"].map(
+              (tech, index) => (
+                <span
+                  key={index}
+                  className="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-full text-sm font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-200 animate-fade-in"
+                  style={{ animationDelay: `${index * 150}ms` }}
+                >
+                  {tech}
+                </span>
+              )
+            )}
           </div>
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center gap-6 mt-4">
             {/* Connect Button */}
-            <button className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 overflow-hidden">
+            <button onClick={()=>handleScroll("contact")} className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-indigo-700 opacity-0 group-hover:opacity-100 transition duration-300"></div>
               <div className="relative flex items-center gap-3">
                 <span>Connect with me</span>
@@ -102,7 +109,9 @@ function Header() {
             {/* Resume Button */}
             <button className="group px-8 py-4 bg-white/70 backdrop-blur-sm border-2 border-gray-300 text-gray-800 rounded-full font-medium shadow-lg hover:shadow-xl hover:border-blue-400 hover:bg-white/90 transform hover:scale-105 transition duration-300">
               <div className="flex items-center gap-3">
-                <span>My Resume</span>
+                <a href="https://drive.google.com/file/d/1Yb8mxn5wKLNy9C3PgfUphB-51A04X4qS/view?usp=sharing">
+                  <span>My Resume</span>
+                 </a>
                 <Download className="w-5 h-5 group-hover:animate-bounce" />
               </div>
             </button>
@@ -112,7 +121,9 @@ function Header() {
           <div className="flex items-center mb-5 gap-3 bg-green-50/80 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg border border-green-200/50">
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 bg-green-500  rounded-full animate-pulse"></div>
-              <span className="text-green-800 text-sm font-medium">Available for new opportunities</span>
+              <span className="text-green-800 text-sm font-medium">
+                Available for new opportunities
+              </span>
             </div>
             <Coffee className="w-4 h-4 text-green-600" />
           </div>

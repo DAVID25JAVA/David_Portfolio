@@ -114,7 +114,7 @@ function GetInTouch() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-16 px-4">
+    <div id="contact" className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-16 px-4">
       <Toaster position="top-center" reverseOrder={false} />
       <div className="max-w-6xl md:px-6 mx-auto">
         {/* Section Header */}
