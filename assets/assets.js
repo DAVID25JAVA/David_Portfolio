@@ -43,8 +43,10 @@ import veg from "./veg.jpg";
 import e_commerce from "./e_commerce.jpeg";
 import portfolio from "./portfolio.jpg";
 import port from "./port.png";
+import myImg from "./myImg.jpg";
 
 export const assets = {
+  myImg,
   port,
   portfolio,
   burger,

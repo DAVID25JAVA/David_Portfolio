@@ -35,7 +35,7 @@ function Header() {
                 <LazyLoad>
                   <img
                     className="w-full h-full object-cover"
-                    src={assets?.userImg?.src}
+                    src={assets?.myImg?.src}
                     alt="David Pal Profile"
                   />
                 </LazyLoad>
