@@ -33,6 +33,10 @@ function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, []);
+
   const menuItems = [
     { name: "Home", href: "#home", icon: Home },
     { name: "Projects", href: "#projects", icon: Briefcase },
@@ -59,7 +63,7 @@ function Navbar() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex justify-between items-center h-16 md:h-20">
             {/* Logo */}
-            <div className="flex-shrink-0">
+            <div onClick={()=>handleScroll("home")} className="flex-shrink-0">
               <div className="relative group">
                 <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-300"></div>
                 <div className="relative bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text">
@@ -93,7 +97,7 @@ function Navbar() {
             {/* Right Side Icons & Button */}
             <div className="flex items-center gap-4">
               {/* Theme Toggle */}
-              <button
+              {/* <button
                 onClick={() => setIsDarkMode(!isDarkMode)}
                 className="relative p-2 cursor-pointer rounded-full bg-white/50 backdrop-blur-sm border border-white/30 shadow-lg hover:shadow-xl transform hover:scale-110 transition duration-300 group"
               >
@@ -103,7 +107,7 @@ function Navbar() {
                 ) : (
                   <Moon className="w-5 h-5 text-gray-600 relative z-10" />
                 )}
-              </button>
+              </button> */}
 
               {/* Connect Button - Desktop */}
               <div className="hidden md:block">
@@ -181,8 +185,8 @@ function Navbar() {
           <div className="mt-8">
             <button
               onClick={() => {
-                handleScroll("contact")
-                setMobileMenu(false)
+                handleScroll("contact");
+                setMobileMenu(false);
               }}
               className="w-full group bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 rounded-xl font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300"
             >

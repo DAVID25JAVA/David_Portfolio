@@ -4,8 +4,7 @@ import { MoveRight, Download, Sparkles, Code, Coffee } from "lucide-react";
 import { assets } from "@/assets/assets";
 
 function Header() {
-
-    const handleScroll = (id) => {
+  const handleScroll = (id) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -13,7 +12,10 @@ function Header() {
   };
 
   return (
-    <div id="home" className="min-h-screen bg-gradient-to-br pt-14 from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center px-4 relative overflow-hidden">
+    <div
+      id="home"
+      className="min-h-screen bg-gradient-to-br pt-14 from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center px-4 relative overflow-hidden"
+    >
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-20 w-32 h-32 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-pulse"></div>
@@ -98,7 +100,10 @@ function Header() {
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row items-center gap-6 mt-4">
             {/* Connect Button */}
-            <button onClick={()=>handleScroll("contact")} className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 overflow-hidden">
+            <button
+              onClick={() => handleScroll("contact")}
+              className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 overflow-hidden"
+            >
               <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-indigo-700 opacity-0 group-hover:opacity-100 transition duration-300"></div>
               <div className="relative flex items-center gap-3">
                 <span>Connect with me</span>
@@ -111,7 +116,7 @@ function Header() {
               <div className="flex items-center gap-3">
                 <a href="https://drive.google.com/file/d/1Yb8mxn5wKLNy9C3PgfUphB-51A04X4qS/view?usp=sharing">
                   <span>My Resume</span>
-                 </a>
+                </a>
                 <Download className="w-5 h-5 group-hover:animate-bounce" />
               </div>
             </button>

@@ -6,6 +6,7 @@ import Projects from "./components/Projects";
 import GetInTouch from "./components/GetInTouch";
 import Footer from "./components/Footer";
 import { Toaster } from "react-hot-toast";
+import Service from "./components/Service";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Header />
       <About />
       <Projects />
+      <Service />
       <GetInTouch />
       <Footer/>
     </>
