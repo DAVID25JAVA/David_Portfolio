@@ -87,17 +87,37 @@ function Header() {
 
           {/* Tech Stack Pills */}
           <div className="flex flex-wrap justify-center gap-3 max-w-2xl">
-            {["React.js", "Next.js", "JavaScript", "Tailwind CSS"].map(
-              (tech, index) => (
-                <span
-                  key={index}
-                  className="px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white rounded-full text-sm font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-200 animate-fade-in"
-                  style={{ animationDelay: `${index * 150}ms` }}
-                >
-                  {tech}
-                </span>
-              )
-            )}
+            {[
+              {
+                name: "LinkedIn",
+                url: "https://www.linkedin.com/in/david-pal-ba6a72246/",
+                bgFrom: "from-blue-700",
+                bgTo: "to-blue-500",
+              },
+              {
+                name: "GitHub",
+                url: "https://github.com/DAVID25JAVA",
+                bgFrom: "from-gray-800",
+                bgTo: "to-gray-600",
+              },
+              {
+                name: "Twitter",
+                url: "https://x.com/home",
+                bgFrom: "from-blue-400",
+                bgTo: "to-blue-300",
+              },
+            ].map((social, index) => (
+              <a
+                key={index}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`px-4 py-2 bg-gradient-to-r ${social.bgFrom} ${social.bgTo} text-white rounded-full text-sm font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-200 animate-fade-in inline-block`}
+                style={{ animationDelay: `${index * 150}ms` }}
+              >
+                {social.name}
+              </a>
+            ))}
           </div>
 
           {/* Action Buttons */}
@@ -119,7 +139,7 @@ function Header() {
               <div className="flex items-center gap-3">
                 <a
                   target="_blank"
-                  href="https://drive.google.com/file/d/1Yb8mxn5wKLNy9C3PgfUphB-51A04X4qS/view?usp=sharing"
+                  href="https://drive.google.com/file/d/1YKYE_sKr2RiyMv-Nz0iU7Fqsdw8rbJlo/view?usp=sharing"
                 >
                   <span>My Resume</span>
                 </a>
