@@ -1,4 +1,4 @@
-import Image from "next/image";
+"use client";
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import About from "./components/About";
@@ -11,14 +11,14 @@ import Service from "./components/Service";
 export default function Home() {
   return (
     <>
-      <Toaster/>
+      <Toaster />
       <Navbar />
       <Header />
       <About />
       <Projects />
       <Service />
       <GetInTouch />
-      <Footer/>
+      <Footer />
     </>
   );
 }

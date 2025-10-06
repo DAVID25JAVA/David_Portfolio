@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   Menu,
   X,
@@ -10,18 +10,34 @@ import {
   User,
   Briefcase,
   MessageCircle,
-  Braces
+  Braces,
 } from "lucide-react";
 
 function Navbar() {
   const [mobileMenu, setMobileMenu] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [themeMode, setThemeMode] = useState("dark");
+
+  useEffect(() => {
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
+    console.log(prefersDark);
+    handleThemeMode(prefersDark.matches ? "dark" : "light");
+  }, []);
+
+  const handleThemeMode = (mode) => {
+    console.log(mode);
+    if (mode == "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    setThemeMode(mode);
+  };
 
   const handleScroll = (id) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth",});
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -61,10 +77,10 @@ function Navbar() {
             : "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 backdrop-blur-lg"
         }`}
       >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className={`max-w-6xl mx-auto px-4 sm:px-6  `}>
           <div className="flex justify-between items-center h-16 md:h-20">
             {/* Logo */}
-            <div onClick={()=>handleScroll("home")} className="flex-shrink-0">
+            <div onClick={() => handleScroll("home")} className="flex-shrink-0">
               <div className="relative group">
                 <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-300"></div>
                 <div className="relative bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text">
@@ -98,17 +114,19 @@ function Navbar() {
             {/* Right Side Icons & Button */}
             <div className="flex items-center gap-4">
               {/* Theme Toggle */}
-              {/* <button
-                onClick={() => setIsDarkMode(!isDarkMode)}
+              <button
+                onClick={() =>
+                  handleThemeMode(themeMode === "dark" ? "light" : "dark")
+                }
                 className="relative p-2 cursor-pointer rounded-full bg-white/50 backdrop-blur-sm border border-white/30 shadow-lg hover:shadow-xl transform hover:scale-110 transition duration-300 group"
               >
-                <div className="absolute  inset-0 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full opacity-0 group-hover:opacity-20 transition duration-300"></div>
-                {isDarkMode ? (
-                  <Sun className="w-5 h-5 text-yellow-600 relative z-10" />
-                ) : (
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full opacity-0 group-hover:opacity-20 transition duration-300"></div>
+                {themeMode === "dark" ? (
                   <Moon className="w-5 h-5 text-gray-600 relative z-10" />
+                ) : (
+                  <Sun className="w-5 h-5 text-yellow-600 relative z-10" />
                 )}
-              </button> */}
+              </button>
 
               {/* Connect Button - Desktop */}
               <div className="hidden md:block">
