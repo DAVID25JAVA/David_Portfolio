@@ -3,8 +3,10 @@ import React from "react";
 import { MoveRight, Download, Sparkles, Code, Coffee } from "lucide-react";
 import { assets } from "@/assets/assets";
 import LazyLoad from "react-lazyload";
+import { useTheme } from "../ThemeContext/theme";
 
 function Header() {
+  const { theme } = useTheme();
   const handleScroll = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -15,7 +17,7 @@ function Header() {
   return (
     <div
       id="home"
-      className="min-h-screen bg-gradient-to-br pt-14 from-slate-50 via-blue-50 to-indigo-50 flex items-center justify-center px-4 relative overflow-hidden"
+      className={`min-h-screen bg-gradient-to-br pt-14 from-slate-50 via-blue-50 to-indigo-50   flex items-center justify-center px-4 relative overflow-hidden `}
     >
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden">
