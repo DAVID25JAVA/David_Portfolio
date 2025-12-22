@@ -12,15 +12,18 @@ import {
   Sparkles,
   Monitor,
   Layers,
-    Rocket,
+  Rocket,
   CreditCard,
   Globe as GlobeIcon,
 } from "lucide-react";
+import { useTheme } from "../ThemeContext/theme";
 
 function Services() {
   const [activeService, setActiveService] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
 
   // Intersection Observer for animations
   useEffect(() => {
@@ -59,7 +62,6 @@ function Services() {
         "State Management",
       ],
       technologies: ["React", "Next.js", "JavaScript", "Tailwind CSS", "MUI"],
-    //   price: "Starting at $999",
     },
     {
       id: 2,
@@ -75,7 +77,6 @@ function Services() {
         "Performance Optimization",
       ],
       technologies: ["CSS3", "Flexbox", "Grid", "Media Queries"],
-    //   price: "Starting at $599",
     },
     {
       id: 5,
@@ -91,14 +92,13 @@ function Services() {
         "API Integration",
       ],
       technologies: ["React", "Node.js", "Express", "MongoDB"],
-    //   price: "Starting at $1499",
     },
     {
       id: 7,
       title: "Payment Gateway Integration",
       description:
         "Integrating secure and reliable payment systems to ensure seamless transactions and user trust",
-      icon: CreditCard, // Assuming you have an appropriate icon
+      icon: CreditCard,
       color: "from-blue-600 via-purple-600 to-indigo-600",
       features: [
         "Multiple Payment Options",
@@ -107,7 +107,6 @@ function Services() {
         "Fraud Detection",
       ],
       technologies: ["Stripe", "PayPal", "Razorpay"],
-    //   price: "Starting at $699",
     },
   ];
 
@@ -122,13 +121,27 @@ function Services() {
     <section
       ref={sectionRef}
       id="services"
-      className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden"
+      className={`py-20 relative overflow-hidden transition-colors duration-500 ${
+        isDark
+          ? "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
+          : "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50"
+      }`}
     >
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-10 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-10 w-80 h-80 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse delay-500"></div>
+        {isDark ? (
+          <>
+            <div className="absolute top-1/4 left-10 w-64 h-64 bg-blue-500/10 rounded-full filter blur-3xl opacity-20 animate-pulse"></div>
+            <div className="absolute bottom-1/4 right-10 w-80 h-80 bg-indigo-500/10 rounded-full filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/10 rounded-full filter blur-3xl opacity-10 animate-pulse delay-500"></div>
+          </>
+        ) : (
+          <>
+            <div className="absolute top-1/4 left-10 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+            <div className="absolute bottom-1/4 right-10 w-80 h-80 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse delay-500"></div>
+          </>
+        )}
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-6 relative z-10">
@@ -138,19 +151,27 @@ function Services() {
             <div className="p-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600">
               <Sparkles className="w-6 h-6 text-white" />
             </div>
-            <span className="text-blue-600 font-semibold text-lg">
+            <span className={`font-semibold text-lg ${isDark ? "text-blue-400" : "text-blue-600"}`}>
               My Services
             </span>
           </div>
 
-          <h2 className={`text-4xl md:text-5xl font-bold text-gray-900 mb-6`}>
+          <h2 className={`text-4xl md:text-5xl font-bold mb-6 transition-colors duration-500 ${
+            isDark ? "text-slate-50" : "text-gray-900"
+          }`}>
             What I Can Do For{" "}
-            <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+            <span className={`bg-gradient-to-r bg-clip-text text-transparent ${
+              isDark
+                ? "from-blue-400 to-indigo-400"
+                : "from-blue-600 to-indigo-600"
+            }`}>
               You
             </span>
           </h2>
 
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          <p className={`text-xl max-w-3xl mx-auto leading-relaxed ${
+            isDark ? "text-slate-300" : "text-gray-600"
+          }`}>
             I provide comprehensive web development services to bring your
             digital vision to life with cutting-edge technology and modern
             design principles.
@@ -162,8 +183,16 @@ function Services() {
           {services.map((service, index) => (
             <div
               key={service.id}
-              className={`group relative bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-lg hover:shadow-2xl border border-white/20 transition-all duration-500 hover:scale-105 cursor-pointer ${
-                activeService === index ? "ring-2 ring-blue-600" : ""
+              className={`group relative backdrop-blur-md rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 cursor-pointer ${
+                isDark
+                  ? "bg-slate-800/60 border border-slate-700/50"
+                  : "bg-white/70 border border-white/20"
+              } ${
+                activeService === index
+                  ? isDark
+                    ? "ring-2 ring-blue-400"
+                    : "ring-2 ring-blue-600"
+                  : ""
               }`}
               style={{ transitionDelay: `${index * 100 + 400}ms` }}
               onMouseEnter={() => setActiveService(index)}
@@ -183,11 +212,15 @@ function Services() {
 
               {/* Service Content */}
               <div className="space-y-4">
-                <h3 className="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition duration-300">
+                <h3 className={`text-2xl font-bold transition duration-300 ${
+                  isDark
+                    ? "text-slate-100 group-hover:text-blue-400"
+                    : "text-gray-900 group-hover:text-blue-600"
+                }`}>
                   {service.title}
                 </h3>
 
-                <p className="text-gray-600 leading-relaxed">
+                <p className={`leading-relaxed ${isDark ? "text-slate-400" : "text-gray-600"}`}>
                   {service.description}
                 </p>
 
@@ -196,36 +229,30 @@ function Services() {
                   {service.features.map((feature, idx) => (
                     <li
                       key={idx}
-                      className="flex items-center gap-2 text-sm text-gray-600"
+                      className={`flex items-center gap-2 text-sm ${
+                        isDark ? "text-slate-400" : "text-gray-600"
+                      }`}
                     >
-                      <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                      <CheckCircle className={`w-4 h-4 flex-shrink-0 ${
+                        isDark ? "text-green-400" : "text-green-500"
+                      }`} />
                       <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
 
                 {/* Technologies */}
-                <div className="pt- border-t border-gray-200"></div>
+                <div className={`pt-0 border-t ${isDark ? "border-slate-700" : "border-gray-200"}`}></div>
                 <div className="flex flex-wrap gap-2">
                   {service.technologies.map((tech, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1 bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-xs font-medium rounded-full shadow-sm hover:shadow-md transform hover:scale-105 transition-all duration-200"
+                      className="px-3 py-1 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-xs font-medium rounded-full shadow-sm hover:shadow-md transform hover:scale-105 transition-all duration-200"
                     >
                       {tech}
                     </span>
                   ))}
                 </div>
-
-                {/* Price */}
-                {/* <div className="pt-4 border-t border-gray-200">
-                  <div className="flex items-center justify-between">
-                    <span className="text-lg font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                      {service.price}
-                    </span>
-                    <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition duration-300" />
-                  </div>
-                </div> */}
               </div>
 
               {/* Hover Gradient Border */}
@@ -236,7 +263,11 @@ function Services() {
 
         {/* Featured Service Detail */}
         {activeService !== null && (
-          <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white/30 transition-all duration-500">
+          <div className={`backdrop-blur-md rounded-3xl p-8 shadow-2xl transition-all duration-500 ${
+            isDark
+              ? "bg-slate-800/60 border border-slate-700/50"
+              : "bg-white/80 border border-white/30"
+          }`}>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
@@ -245,20 +276,22 @@ function Services() {
                   >
                     {/* <services[activeService].icon className="w-8 h-8 text-white" /> */}
                   </div>
-                  <h3 className="text-3xl font-bold text-gray-900">
+                  <h3 className={`text-3xl font-bold ${isDark ? "text-slate-50" : "text-gray-900"}`}>
                     {services[activeService].title}
                   </h3>
                 </div>
 
-                <p className="text-lg text-gray-600 leading-relaxed">
+                <p className={`text-lg leading-relaxed ${isDark ? "text-slate-300" : "text-gray-600"}`}>
                   {services[activeService].description}
                 </p>
 
                 <div className="grid grid-cols-2 gap-4">
                   {services[activeService].features.map((feature, idx) => (
                     <div key={idx} className="flex items-center gap-2">
-                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                      <span className="text-gray-700 font-medium">
+                      <CheckCircle className={`w-5 h-5 flex-shrink-0 ${
+                        isDark ? "text-green-400" : "text-green-500"
+                      }`} />
+                      <span className={`font-medium ${isDark ? "text-slate-300" : "text-gray-700"}`}>
                         {feature}
                       </span>
                     </div>
@@ -278,22 +311,26 @@ function Services() {
 
               <div className="relative">
                 <div className="absolute -inset-4 bg-gradient-to-r from-blue-600/20 to-indigo-600/20 rounded-2xl blur-xl"></div>
-                <div className="relative bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 space-y-6">
+                <div className={`relative rounded-2xl p-8 space-y-6 ${
+                  isDark
+                    ? "bg-gradient-to-br from-slate-800 to-slate-900"
+                    : "bg-gradient-to-br from-blue-50 to-indigo-50"
+                }`}>
                   <div className="flex items-center gap-3 mb-6">
-                    <Monitor className="w-6 h-6 text-blue-600" />
-                    <span className="text-lg font-semibold text-gray-800">
+                    <Monitor className={`w-6 h-6 ${isDark ? "text-blue-400" : "text-blue-600"}`} />
+                    <span className={`text-lg font-semibold ${isDark ? "text-slate-100" : "text-gray-800"}`}>
                       Why Choose This Service?
                     </span>
                   </div>
 
                   <div className="space-y-4">
                     <div className="flex items-start gap-3">
-                      <Layers className="w-5 h-5 text-indigo-600 mt-0.5" />
+                      <Layers className={`w-5 h-5 mt-0.5 ${isDark ? "text-indigo-400" : "text-indigo-600"}`} />
                       <div>
-                        <h4 className="font-semibold text-gray-800 mb-1">
+                        <h4 className={`font-semibold mb-1 ${isDark ? "text-slate-200" : "text-gray-800"}`}>
                           Modern Technology Stack
                         </h4>
-                        <p className="text-gray-600 text-sm">
+                        <p className={`text-sm ${isDark ? "text-slate-400" : "text-gray-600"}`}>
                           Using the latest tools and frameworks for optimal
                           performance
                         </p>
@@ -301,35 +338,27 @@ function Services() {
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <Rocket className="w-5 h-5 text-purple-600 mt-0.5" />
+                      <Rocket className={`w-5 h-5 mt-0.5 ${isDark ? "text-purple-400" : "text-purple-600"}`} />
                       <div>
-                        <h4 className="font-semibold text-gray-800 mb-1">
+                        <h4 className={`font-semibold mb-1 ${isDark ? "text-slate-200" : "text-gray-800"}`}>
                           Fast Delivery
                         </h4>
-                        <p className="text-gray-600 text-sm">
+                        <p className={`text-sm ${isDark ? "text-slate-400" : "text-gray-600"}`}>
                           Quick turnaround time without compromising on quality
                         </p>
                       </div>
                     </div>
 
                     <div className="flex items-start gap-3">
-                      <Sparkles className="w-5 h-5 text-yellow-600 mt-0.5" />
+                      <Sparkles className={`w-5 h-5 mt-0.5 ${isDark ? "text-yellow-400" : "text-yellow-600"}`} />
                       <div>
-                        <h4 className="font-semibold text-gray-800 mb-1">
+                        <h4 className={`font-semibold mb-1 ${isDark ? "text-slate-200" : "text-gray-800"}`}>
                           Premium Quality
                         </h4>
-                        <p className="text-gray-600 text-sm">
+                        <p className={`text-sm ${isDark ? "text-slate-400" : "text-gray-600"}`}>
                           Attention to detail and pixel-perfect implementations
                         </p>
                       </div>
-                    </div>
-                  </div>
-
-                  <div className="pt-4 border-t border-gray-200">
-                    <div className="text-center">
-                      <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                        {services[activeService].price}
-                      </span>
                     </div>
                   </div>
                 </div>
@@ -340,11 +369,15 @@ function Services() {
 
         {/* Call to Action */}
         <div className="text-center mt-16">
-          <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white/30">
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          <div className={`backdrop-blur-md rounded-3xl p-8 shadow-2xl transition-colors duration-500 ${
+            isDark
+              ? "bg-slate-800/60 border border-slate-700/50"
+              : "bg-white/80 border border-white/30"
+          }`}>
+            <h3 className={`text-2xl md:text-3xl font-bold mb-4 ${isDark ? "text-slate-50" : "text-gray-900"}`}>
               Ready to Start Your Project?
             </h3>
-            <p className="text-gray-600 mb-8 text-lg">
+            <p className={`mb-8 text-lg ${isDark ? "text-slate-300" : "text-gray-600"}`}>
               Let's discuss how I can help bring your vision to life with modern
               web technologies.
             </p>
@@ -360,7 +393,11 @@ function Services() {
               </button>
               <button
                 onClick={() => handleScroll("projects")}
-                className="group px-8 py-4 bg-white/70 backdrop-blur-sm border-2 border-gray-300 text-gray-800 rounded-full font-medium shadow-lg hover:shadow-xl hover:border-blue-400 hover:bg-white/90 transform hover:scale-105 transition duration-300"
+                className={`group px-8 py-4 backdrop-blur-md border-2 rounded-full font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300 ${
+                  isDark
+                    ? "bg-slate-800/40 border-slate-600 text-slate-100 hover:border-blue-400"
+                    : "bg-white/70 border-gray-300 text-gray-800 hover:border-blue-400 hover:bg-white/90"
+                }`}
               >
                 <div className="flex items-center gap-3">
                   <span>View My Work</span>

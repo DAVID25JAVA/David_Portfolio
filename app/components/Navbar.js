@@ -18,6 +18,7 @@ function Navbar() {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const isDark = theme === "dark";
 
   const handleScroll = (id) => {
     const element = document.getElementById(id);
@@ -50,25 +51,46 @@ function Navbar() {
     <>
       {/* Background Decorative Elements */}
       <div className="fixed top-0 left-0 right-0 w-full h-32 -z-10 overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-        <div className="absolute top-0 right-1/4 w-48 h-48 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
+        {isDark ? (
+          <>
+            <div className="absolute top-0 left-1/4 w-64 h-64 bg-blue-500/10 rounded-full filter blur-3xl opacity-20 animate-pulse"></div>
+            <div className="absolute top-0 right-1/4 w-48 h-48 bg-indigo-500/10 rounded-full filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
+          </>
+        ) : (
+          <>
+            <div className="absolute top-0 left-1/4 w-64 h-64 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+            <div className="absolute top-0 right-1/4 w-48 h-48 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
+          </>
+        )}
       </div>
 
       {/* Fixed Navbar */}
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-white/60 backdrop-blur-xl shadow-lg"
+            ? isDark
+              ? "bg-slate-900/80 backdrop-blur-xl shadow-lg shadow-black/20"
+              : "bg-white/60 backdrop-blur-xl shadow-lg"
+            : isDark
+            ? "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 backdrop-blur-lg"
             : "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 backdrop-blur-lg"
         }`}
       >
-        <div className={`max-w-6xl mx-auto px-4 sm:px-6  `}>
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex justify-between items-center h-16 md:h-20">
             {/* Logo */}
             <div onClick={() => handleScroll("home")} className="flex-shrink-0">
               <div className="relative group">
-                <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-300"></div>
-                <div className="relative bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text">
+                <div className={`absolute -inset-2 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-300 ${
+                  isDark
+                    ? "bg-gradient-to-r from-blue-500 to-indigo-500"
+                    : "bg-gradient-to-r from-blue-600 to-indigo-600"
+                }`}></div>
+                <div className={`relative bg-gradient-to-r bg-clip-text ${
+                  isDark
+                    ? "from-blue-400 to-indigo-400"
+                    : "from-blue-600 to-indigo-600"
+                }`}>
                   <h1 className="text-2xl md:text-3xl font-bold text-transparent cursor-pointer">
                     David.dev
                   </h1>
@@ -78,18 +100,30 @@ function Navbar() {
 
             {/* Desktop Menu */}
             <div className="hidden md:flex">
-              <div className="bg-white/70 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg border border-white/30">
+              <div className={`backdrop-blur-md rounded-full px-6 py-3 shadow-lg transition-colors duration-300 ${
+                isDark
+                  ? "bg-slate-800/60 border border-slate-700/50"
+                  : "bg-white/70 border border-white/30"
+              }`}>
                 <ul className="flex items-center gap-8">
                   {menuItems.map((item, index) => (
                     <li key={index} className="relative group">
                       <button
                         onClick={() => handleScroll(item.href.substring(1))}
-                        className="flex items-center gap-2 text-gray-700 hover:text-blue-600 transition duration-300 font-medium py-2 px-3 rounded-lg hover:bg-blue-50/50"
+                        className={`flex items-center gap-2 transition duration-300 font-medium py-2 px-3 rounded-lg ${
+                          isDark
+                            ? "text-slate-300 hover:text-blue-400 hover:bg-slate-700/50"
+                            : "text-gray-700 hover:text-blue-600 hover:bg-blue-50/50"
+                        }`}
                       >
                         <item.icon className="w-4 h-4" />
                         <span>{item.name}</span>
                       </button>
-                      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 scale-x-0 group-hover:scale-x-100 transition duration-300 rounded-full"></div>
+                      <div className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r scale-x-0 group-hover:scale-x-100 transition duration-300 rounded-full ${
+                        isDark
+                          ? "from-blue-400 to-indigo-400"
+                          : "from-blue-600 to-indigo-600"
+                      }`}></div>
                     </li>
                   ))}
                 </ul>
@@ -101,11 +135,19 @@ function Navbar() {
               {/* Theme Toggle */}
               <button
                 onClick={toggleTheme}
-                className="relative p-2 cursor-pointer rounded-full bg-white/50 backdrop-blur-sm border border-white/30 shadow-lg hover:shadow-xl transform hover:scale-110 transition duration-300 group"
+                className={`relative p-2 cursor-pointer rounded-full backdrop-blur-sm shadow-lg hover:shadow-xl transform hover:scale-110 transition duration-300 group ${
+                  isDark
+                    ? "bg-slate-800/60 border border-slate-700/50"
+                    : "bg-white/50 border border-white/30"
+                }`}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full opacity-0 group-hover:opacity-20 transition duration-300"></div>
+                <div className={`absolute inset-0 rounded-full opacity-0 group-hover:opacity-20 transition duration-300 ${
+                  isDark
+                    ? "bg-gradient-to-r from-blue-400 to-indigo-400"
+                    : "bg-gradient-to-r from-blue-400 to-indigo-400"
+                }`}></div>
                 {theme === "dark" ? (
-                  <Moon className="w-5 h-5 text-gray-600 relative z-10" />
+                  <Moon className="w-5 h-5 text-blue-400 relative z-10" />
                 ) : (
                   <Sun className="w-5 h-5 text-yellow-600 relative z-10" />
                 )}
@@ -128,9 +170,13 @@ function Navbar() {
               {/* Mobile Menu Button */}
               <button
                 onClick={() => setMobileMenu(true)}
-                className="md:hidden p-2 rounded-full bg-white/50 backdrop-blur-sm border border-white/30 shadow-lg hover:shadow-xl transform hover:scale-110 transition duration-300"
+                className={`md:hidden p-2 rounded-full backdrop-blur-sm shadow-lg hover:shadow-xl transform hover:scale-110 transition duration-300 ${
+                  isDark
+                    ? "bg-slate-800/60 border border-slate-700/50"
+                    : "bg-white/50 border border-white/30"
+                }`}
               >
-                <Menu className="w-6 h-6 text-gray-700" />
+                <Menu className={`w-6 h-6 ${isDark ? "text-slate-300" : "text-gray-700"}`} />
               </button>
             </div>
           </div>
@@ -147,20 +193,34 @@ function Navbar() {
 
       {/* Mobile Menu Sidebar */}
       <div
-        className={`fixed top-0 right-0 h-full w-80 bg-white/95 backdrop-blur-xl shadow-2xl z-50 transform transition-transform duration-300 ease-out md:hidden ${
+        className={`fixed top-0 right-0 h-full w-80 backdrop-blur-xl shadow-2xl z-50 transform transition-all duration-300 ease-out md:hidden ${
           mobileMenu ? "translate-x-0" : "translate-x-full"
+        } ${
+          isDark
+            ? "bg-slate-900/95 border-l border-slate-800"
+            : "bg-white/95"
         }`}
       >
         {/* Mobile Menu Header */}
-        <div className="flex justify-between items-center p-6 border-b border-gray-200/50">
-          <h2 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+        <div className={`flex justify-between items-center p-6 border-b transition-colors duration-300 ${
+          isDark ? "border-slate-800" : "border-gray-200/50"
+        }`}>
+          <h2 className={`text-xl font-bold bg-gradient-to-r bg-clip-text text-transparent ${
+            isDark
+              ? "from-blue-400 to-indigo-400"
+              : "from-blue-600 to-indigo-600"
+          }`}>
             Menu
           </h2>
           <button
             onClick={() => setMobileMenu(false)}
-            className="p-2 rounded-full hover:bg-gray-100/50 transition duration-200"
+            className={`p-2 rounded-full transition duration-200 ${
+              isDark
+                ? "hover:bg-slate-800"
+                : "hover:bg-gray-100/50"
+            }`}
           >
-            <X className="w-6 h-6 text-gray-600" />
+            <X className={`w-6 h-6 ${isDark ? "text-slate-400" : "text-gray-600"}`} />
           </button>
         </div>
 
@@ -172,9 +232,17 @@ function Navbar() {
                 <a
                   href={item.href}
                   onClick={() => setMobileMenu(false)}
-                  className="flex items-center gap-4 text-gray-700 hover:text-blue-600 transition duration-300 p-3 rounded-xl hover:bg-blue-50/50 group"
+                  className={`flex items-center gap-4 transition duration-300 p-3 rounded-xl group ${
+                    isDark
+                      ? "text-slate-300 hover:text-blue-400 hover:bg-slate-800"
+                      : "text-gray-700 hover:text-blue-600 hover:bg-blue-50/50"
+                  }`}
                 >
-                  <div className="p-2 rounded-lg bg-gray-100 group-hover:bg-blue-100 transition duration-300">
+                  <div className={`p-2 rounded-lg transition duration-300 ${
+                    isDark
+                      ? "bg-slate-800 group-hover:bg-slate-700"
+                      : "bg-gray-100 group-hover:bg-blue-100"
+                  }`}>
                     <item.icon className="w-5 h-5" />
                   </div>
                   <span className="text-lg font-medium">{item.name}</span>

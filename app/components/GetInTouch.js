@@ -14,6 +14,7 @@ import {
   Clock,
   Star,
 } from "lucide-react";
+import { useTheme } from "../ThemeContext/theme";
 
 function GetInTouch() {
   const [loading, setLoading] = useState(false);
@@ -22,12 +23,8 @@ function GetInTouch() {
     email: "",
     message: "",
   });
-
-  // Mock toast function for demo - replace with your actual toast import
-  // const toast = {
-  //   success: (message) => console.log(`Success: ${message}`),
-  //   error: (message) => console.log(`Error: ${message}`),
-  // };
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -105,26 +102,49 @@ function GetInTouch() {
   ];
 
   const getColorClasses = (color) => {
-    const colors = {
-      blue: "bg-blue-100 text-blue-700 group-hover:bg-blue-200",
-      green: "bg-green-100 text-green-700 group-hover:bg-green-200",
-      purple: "bg-purple-100 text-purple-700 group-hover:bg-purple-200",
-    };
-    return colors[color] || colors.blue;
+    if (isDark) {
+      const darkColors = {
+        blue: "bg-blue-500/20 text-blue-400 group-hover:bg-blue-500/30",
+        green: "bg-green-500/20 text-green-400 group-hover:bg-green-500/30",
+        purple: "bg-purple-500/20 text-purple-400 group-hover:bg-purple-500/30",
+      };
+      return darkColors[color] || darkColors.blue;
+    } else {
+      const lightColors = {
+        blue: "bg-blue-100 text-blue-700 group-hover:bg-blue-200",
+        green: "bg-green-100 text-green-700 group-hover:bg-green-200",
+        purple: "bg-purple-100 text-purple-700 group-hover:bg-purple-200",
+      };
+      return lightColors[color] || lightColors.blue;
+    }
   };
 
   return (
-    <div id="contact" className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-16 px-4">
+    <div id="contact" className={`min-h-screen py-16 px-4 transition-colors duration-500 ${
+      isDark
+        ? "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
+        : "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50"
+    }`}>
       <Toaster position="top-center" reverseOrder={false} />
       <div className="max-w-6xl md:px-6 mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <p className="text-lg text-blue-600 font-semibold mb-2">Contact Us</p>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Get In <span className="text-blue-600">Touch</span>
+          <p className={`text-lg font-semibold mb-2 ${isDark ? "text-blue-400" : "text-blue-600"}`}>
+            Contact Us
+          </p>
+          <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-colors duration-500 ${
+            isDark ? "text-slate-50" : "text-gray-900"
+          }`}>
+            Get In <span className={isDark ? "text-blue-400" : "text-blue-600"}>Touch</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full mb-6"></div>
-          <p className="md:max-w-2xl w-full mx-auto text-center text-lg text-gray-700 leading-relaxed">
+          <div className={`w-24 h-1 mx-auto rounded-full mb-6 ${
+            isDark
+              ? "bg-gradient-to-r from-blue-400 to-indigo-400"
+              : "bg-gradient-to-r from-blue-600 to-indigo-600"
+          }`}></div>
+          <p className={`md:max-w-2xl w-full mx-auto text-center text-lg leading-relaxed ${
+            isDark ? "text-slate-300" : "text-gray-700"
+          }`}>
             I'd love to hear from you! If you have any questions, comments or
             feedback, please use the form below or reach out through any of the
             contact methods.
@@ -134,11 +154,15 @@ function GetInTouch() {
         <div className="grid lg:grid-cols-3 gap-12">
           {/* Contact Information */}
           <div className="lg:col-span-1 space-y-6">
-            <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/20">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+            <div className={`backdrop-blur-md rounded-2xl p-8 shadow-xl transition-colors duration-500 ${
+              isDark
+                ? "bg-slate-800/60 border border-slate-700/50"
+                : "bg-white/70 border border-white/20"
+            }`}>
+              <h3 className={`text-2xl font-bold mb-6 ${isDark ? "text-slate-50" : "text-gray-900"}`}>
                 Let's Connect
               </h3>
-              <p className="text-gray-700 mb-8 leading-relaxed">
+              <p className={`mb-8 leading-relaxed ${isDark ? "text-slate-300" : "text-gray-700"}`}>
                 Ready to start your next project or just want to chat? I'm
                 always excited to connect with fellow developers and potential
                 collaborators.
@@ -158,13 +182,13 @@ function GetInTouch() {
                       <info.icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-gray-900 mb-1">
+                      <h4 className={`font-bold mb-1 ${isDark ? "text-slate-100" : "text-gray-900"}`}>
                         {info.title}
                       </h4>
-                      <p className="text-blue-600 font-semibold">
+                      <p className={`font-semibold ${isDark ? "text-blue-400" : "text-blue-600"}`}>
                         {info.content}
                       </p>
-                      <p className="text-gray-600 text-sm">
+                      <p className={`text-sm ${isDark ? "text-slate-400" : "text-gray-600"}`}>
                         {info.description}
                       </p>
                     </div>
@@ -176,16 +200,22 @@ function GetInTouch() {
 
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/20">
+            <div className={`backdrop-blur-md rounded-2xl p-8 shadow-xl transition-colors duration-500 ${
+              isDark
+                ? "bg-slate-800/60 border border-slate-700/50"
+                : "bg-white/70 border border-white/20"
+            }`}>
               <div className="space-y-6">
                 {/* Name and Email Row */}
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label
                       htmlFor="name"
-                      className="flex items-center gap-2 text-gray-700 font-semibold"
+                      className={`flex items-center gap-2 font-semibold ${
+                        isDark ? "text-slate-300" : "text-gray-700"
+                      }`}
                     >
-                      <User className="w-4 h-4 text-blue-600" />
+                      <User className={`w-4 h-4 ${isDark ? "text-blue-400" : "text-blue-600"}`} />
                       Your Name
                     </label>
                     <input
@@ -196,16 +226,22 @@ function GetInTouch() {
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder="Name"
-                      className="w-full h-12 text-black px-4 bg-white/50 border border-gray-200 rounded-xl outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 placeholder-gray-400"
+                      className={`w-full h-12 px-4 border rounded-xl outline-none transition-all duration-300 ${
+                        isDark
+                          ? "bg-slate-900/50 border-slate-700 text-slate-100 placeholder-slate-500 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20"
+                          : "bg-white/50 border-gray-200 text-black placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                      }`}
                     />
                   </div>
 
                   <div className="space-y-2">
                     <label
                       htmlFor="email"
-                      className="flex items-center gap-2 text-gray-700 font-semibold"
+                      className={`flex items-center gap-2 font-semibold ${
+                        isDark ? "text-slate-300" : "text-gray-700"
+                      }`}
                     >
-                      <Mail className="w-4 h-4 text-blue-600" />
+                      <Mail className={`w-4 h-4 ${isDark ? "text-blue-400" : "text-blue-600"}`} />
                       Your Email
                     </label>
                     <input
@@ -216,7 +252,11 @@ function GetInTouch() {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="Email"
-                      className="w-full text-black h-12 px-4 bg-white/50 border border-gray-200 rounded-xl outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 placeholder-gray-400"
+                      className={`w-full h-12 px-4 border rounded-xl outline-none transition-all duration-300 ${
+                        isDark
+                          ? "bg-slate-900/50 border-slate-700 text-slate-100 placeholder-slate-500 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20"
+                          : "bg-white/50 border-gray-200 text-black placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                      }`}
                     />
                   </div>
                 </div>
@@ -225,9 +265,11 @@ function GetInTouch() {
                 <div className="space-y-2">
                   <label
                     htmlFor="message"
-                    className="flex items-center gap-2 text-gray-700 font-semibold"
+                    className={`flex items-center gap-2 font-semibold ${
+                      isDark ? "text-slate-300" : "text-gray-700"
+                    }`}
                   >
-                    <MessageSquare className="w-4 h-4 text-blue-600" />
+                    <MessageSquare className={`w-4 h-4 ${isDark ? "text-blue-400" : "text-blue-600"}`} />
                     Message
                   </label>
                   <textarea
@@ -238,7 +280,11 @@ function GetInTouch() {
                     value={formData.message}
                     onChange={handleInputChange}
                     placeholder="Tell me about your project or just say hello..."
-                    className="w-full px-4 py-3 text-black bg-white/50 border border-gray-200 rounded-xl resize-none outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all duration-300 placeholder-gray-400"
+                    className={`w-full px-4 py-3 border rounded-xl resize-none outline-none transition-all duration-300 ${
+                      isDark
+                        ? "bg-slate-900/50 border-slate-700 text-slate-100 placeholder-slate-500 focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20"
+                        : "bg-white/50 border-gray-200 text-black placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                    }`}
                   />
                 </div>
 
@@ -274,9 +320,15 @@ function GetInTouch() {
 
             {/* Quick Response Promise */}
             <div className="mt-6 text-center">
-              <div className="inline-flex items-center gap-2 bg-white/50 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg border border-white/20">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-gray-700 font-medium">
+              <div className={`inline-flex items-center gap-2 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg transition-colors duration-500 ${
+                isDark
+                  ? "bg-slate-800/60 border border-slate-700/50"
+                  : "bg-white/50 border border-white/20"
+              }`}>
+                <div className={`w-2 h-2 rounded-full animate-pulse ${
+                  isDark ? "bg-green-400" : "bg-green-500"
+                }`}></div>
+                <span className={`font-medium ${isDark ? "text-slate-300" : "text-gray-700"}`}>
                   Usually responds within 24 hours
                 </span>
               </div>
@@ -286,11 +338,15 @@ function GetInTouch() {
 
         {/* Bottom CTA Section */}
         <div className="mt-16 text-center">
-          <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-white/20">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+          <div className={`backdrop-blur-md rounded-2xl p-8 shadow-lg transition-colors duration-500 ${
+            isDark
+              ? "bg-slate-800/60 border border-slate-700/50"
+              : "bg-white/50 border border-white/20"
+          }`}>
+            <h3 className={`text-2xl font-bold mb-4 ${isDark ? "text-slate-50" : "text-gray-900"}`}>
               Ready to Start Your Project?
             </h3>
-            <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
+            <p className={`mb-6 max-w-2xl mx-auto ${isDark ? "text-slate-300" : "text-gray-700"}`}>
               Let's discuss your ideas and turn them into reality. I'm here to
               help bring your vision to life with modern web technologies.
             </p>
@@ -298,9 +354,9 @@ function GetInTouch() {
               {benefits.map((benefit, index) => (
                 <div
                   key={index}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-full ${
-                    getColorClasses(benefit.color).split("  ")[0]
-                  } transition-transform hover:scale-105 duration-200`}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-full transition-transform hover:scale-105 duration-200 ${
+                    getColorClasses(benefit.color)
+                  }`}
                 >
                   <benefit.icon className="w-4 h-4" />
                   <span className="font-medium">✓ {benefit.text}</span>
