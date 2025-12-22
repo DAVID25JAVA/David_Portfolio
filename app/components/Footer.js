@@ -40,8 +40,8 @@ function Footer() {
     <footer
       className={`pt-16 transition-colors duration-500 ${
         isDark
-          ? "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-300"
-          : "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 text-gray-700"
+          ? "bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-300"
+          : "bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50 text-gray-700"
       }`}
     >
       <div className="max-w-6xl mx-auto px-6">
@@ -49,7 +49,7 @@ function Footer() {
 
           {/* Brand */}
           <div className="space-y-6">
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold bg-linear-to-r from-blue-500 to-indigo-500 bg-clip-text text-transparent">
               David.dev
             </h1>
 
