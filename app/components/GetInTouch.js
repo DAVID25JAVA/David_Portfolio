@@ -122,8 +122,8 @@ function GetInTouch() {
   return (
     <div id="contact" className={`min-h-screen py-16 px-4 transition-colors duration-500 ${
       isDark
-        ? "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
-        : "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50"
+        ? "bg-linear-to-br from-slate-900 via-slate-800 to-slate-900"
+        : "bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50"
     }`}>
       <Toaster position="top-center" reverseOrder={false} />
       <div className="max-w-6xl md:px-6 mx-auto">
@@ -139,8 +139,8 @@ function GetInTouch() {
           </h2>
           <div className={`w-24 h-1 mx-auto rounded-full mb-6 ${
             isDark
-              ? "bg-gradient-to-r from-blue-400 to-indigo-400"
-              : "bg-gradient-to-r from-blue-600 to-indigo-600"
+              ? "bg-linear-to-r from-blue-400 to-indigo-400"
+              : "bg-linear-to-r from-blue-600 to-indigo-600"
           }`}></div>
           <p className={`md:max-w-2xl w-full mx-auto text-center text-lg leading-relaxed ${
             isDark ? "text-slate-300" : "text-gray-700"
@@ -293,13 +293,13 @@ function GetInTouch() {
                   <button
                     onClick={handleSubmit}
                     disabled={loading}
-                    className={`group relative overflow-hidden bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center gap-3 ${
+                    className={`group relative overflow-hidden bg-linear-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 flex items-center gap-3 ${
                       loading
                         ? "cursor-not-allowed opacity-80"
                         : "cursor-pointer"
                     }`}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-indigo-700 opacity-0 group-hover:opacity-100 transition duration-300"></div>
+                    <div className="absolute inset-0 bg-linear-to-r from-blue-700 to-indigo-700 opacity-0 group-hover:opacity-100 transition duration-300"></div>
                     <div className="relative flex items-center gap-3">
                       {loading ? (
                         <>
@@ -337,7 +337,7 @@ function GetInTouch() {
         </div>
 
         {/* Bottom CTA Section */}
-        <div className="mt-16 text-center">
+        {/* <div className="mt-16 text-center">
           <div className={`backdrop-blur-md rounded-2xl p-8 shadow-lg transition-colors duration-500 ${
             isDark
               ? "bg-slate-800/60 border border-slate-700/50"
@@ -364,7 +364,7 @@ function GetInTouch() {
               ))}
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

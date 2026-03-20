@@ -174,3 +174,37 @@ export const toolsData = [
   assets.figma,
   assets.git,
 ];
+
+export const experiences = [
+  {
+    role: "MERN Stack Developer Intern",
+    company: "2Digit Innovation Pvt Ltd",
+    dateRange: "Nov 4, 2024 – May 4, 2025",
+    duration: "6 Months",
+    type: "Internship",
+    location: "Remote / India",
+    color: "blue",
+    highlights: [
+      "Developed and maintained full-stack web applications using MongoDB, Express, React, Next.js, and Node.js",
+      "Built and integrated RESTful APIs with the frontend using Axios and Fetch API",
+      "Created fully responsive UI layouts using Tailwind CSS and CSS Flexbox/Grid",
+      "Developed reusable, component-based UI architecture to improve code maintainability",
+      "Participated in code reviews and followed Git-based version control best practices",
+    ],
+  },
+  {
+    role: "MERN Stack Developer",
+    company: "Precursor Info Solution Pvt Ltd",
+    dateRange: "Jan 1, 2024 – Jun 30, 2024",
+    duration: "6 Months",
+    type: "Training & Internship",
+    location: "Lucknow / India",
+    color: "indigo",
+    highlights: [
+      "Built RESTful APIs with Node.js and Express for scalable backend services",
+      "Designed dynamic and responsive frontend interfaces using React.js",
+      "Worked with MongoDB for database design, querying, and optimization",
+      "Gained hands-on experience in the complete software development lifecycle",
+    ],
+  },
+];

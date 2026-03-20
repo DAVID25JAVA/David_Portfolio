@@ -43,7 +43,7 @@ function Navbar() {
   const menuItems = [
     { name: "Home", href: "#home", icon: Home },
     { name: "Projects", href: "#projects", icon: Briefcase },
-    { name: "Services", href: "#services", icon: Braces },
+    { name: "Experience", href: "#experience", icon: Braces },
     { name: "About", href: "#about", icon: User },
   ];
 
@@ -72,21 +72,21 @@ function Navbar() {
               ? "bg-slate-900/80 backdrop-blur-xl shadow-lg shadow-black/20"
               : "bg-white/60 backdrop-blur-xl shadow-lg"
             : isDark
-            ? "bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 backdrop-blur-lg"
-            : "bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 backdrop-blur-lg"
+            ? "bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 backdrop-blur-lg"
+            : "bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50 backdrop-blur-lg"
         }`}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex justify-between items-center h-16 md:h-20">
             {/* Logo */}
-            <div onClick={() => handleScroll("home")} className="flex-shrink-0">
+            <div onClick={() => handleScroll("home")} className="shrink-0">
               <div className="relative group">
                 <div className={`absolute -inset-2 rounded-xl blur opacity-20 group-hover:opacity-40 transition duration-300 ${
                   isDark
-                    ? "bg-gradient-to-r from-blue-500 to-indigo-500"
-                    : "bg-gradient-to-r from-blue-600 to-indigo-600"
+                    ? "bg-linear-to-r from-blue-500 to-indigo-500"
+                    : "bg-linear-to-r from-blue-600 to-indigo-600"
                 }`}></div>
-                <div className={`relative bg-gradient-to-r bg-clip-text ${
+                <div className={`relative bg-linear-to-r bg-clip-text ${
                   isDark
                     ? "from-blue-400 to-indigo-400"
                     : "from-blue-600 to-indigo-600"
@@ -119,7 +119,7 @@ function Navbar() {
                         <item.icon className="w-4 h-4" />
                         <span>{item.name}</span>
                       </button>
-                      <div className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r scale-x-0 group-hover:scale-x-100 transition duration-300 rounded-full ${
+                      <div className={`absolute bottom-0 left-0 right-0 h-0.5 bg-linear-to-r scale-x-0 group-hover:scale-x-100 transition duration-300 rounded-full ${
                         isDark
                           ? "from-blue-400 to-indigo-400"
                           : "from-blue-600 to-indigo-600"
@@ -143,8 +143,8 @@ function Navbar() {
               >
                 <div className={`absolute inset-0 rounded-full opacity-0 group-hover:opacity-20 transition duration-300 ${
                   isDark
-                    ? "bg-gradient-to-r from-blue-400 to-indigo-400"
-                    : "bg-gradient-to-r from-blue-400 to-indigo-400"
+                    ? "bg-linear-to-r from-blue-400 to-indigo-400"
+                    : "bg-linear-to-r from-blue-400 to-indigo-400"
                 }`}></div>
                 {theme === "dark" ? (
                   <Moon className="w-5 h-5 text-blue-400 relative z-10" />
@@ -157,9 +157,9 @@ function Navbar() {
               <div className="hidden md:block">
                 <button
                   onClick={() => handleScroll("contact")}
-                  className="group relative overflow-hidden bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300"
+                  className="group relative overflow-hidden bg-linear-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-indigo-700 opacity-0 group-hover:opacity-100 transition duration-300"></div>
+                  <div className="absolute inset-0 bg-linear-to-r from-blue-700 to-indigo-700 opacity-0 group-hover:opacity-100 transition duration-300"></div>
                   <div className="relative cursor-pointer flex items-center gap-2">
                     <span>Connect</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition duration-300" />
@@ -205,7 +205,7 @@ function Navbar() {
         <div className={`flex justify-between items-center p-6 border-b transition-colors duration-300 ${
           isDark ? "border-slate-800" : "border-gray-200/50"
         }`}>
-          <h2 className={`text-xl font-bold bg-gradient-to-r bg-clip-text text-transparent ${
+          <h2 className={`text-xl font-bold bg-linear-to-r bg-clip-text text-transparent ${
             isDark
               ? "from-blue-400 to-indigo-400"
               : "from-blue-600 to-indigo-600"
@@ -258,7 +258,7 @@ function Navbar() {
                 handleScroll("contact");
                 setMobileMenu(false);
               }}
-              className="w-full group bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 rounded-xl font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300"
+              className="w-full group bg-linear-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 rounded-xl font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-300"
             >
               <div className="flex items-center justify-center gap-3">
                 <span className="text-lg">Connect with me</span>
