@@ -23,7 +23,7 @@ function GetInTouch() {
     email: "",
     message: "",
   });
-  const { theme } = useTheme();
+  const { theme, data } = useTheme();
   const isDark = theme === "dark";
 
   const handleInputChange = (e) => {
@@ -75,21 +75,23 @@ function GetInTouch() {
     {
       icon: Mail,
       title: "Email",
-      content: "Dp2072000@gmail.com",
+      content: data[0]?.email,
       description: "Send me an email anytime!",
       color: "blue",
+      link:"mailto:Dp2072000@gmail.com"
     },
     {
       icon: Phone,
       title: "Phone",
-      content: "+91 6393274099",
+      content: `+91-${data[0]?.number}`,
       description: "Let's have a conversation",
       color: "green",
+      link:"tel:+91-6393274099"
     },
     {
       icon: MapPin,
       title: "Location",
-      content: "H Block 144, Alpha 2, Greater Noida 201310  ",
+      content: data[0]?.address,
       description: "Available for remote work",
       color: "purple",
     },
@@ -120,31 +122,47 @@ function GetInTouch() {
   };
 
   return (
-    <div id="contact" className={`min-h-screen py-16 px-4 transition-colors duration-500 ${
-      isDark
-        ? "bg-linear-to-br from-slate-900 via-slate-800 to-slate-900"
-        : "bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50"
-    }`}>
+    <div
+      id="contact"
+      className={`min-h-screen py-16 px-4 transition-colors duration-500 ${
+        isDark
+          ? "bg-linear-to-br from-slate-900 via-slate-800 to-slate-900"
+          : "bg-linear-to-br from-slate-50 via-blue-50 to-indigo-50"
+      }`}
+    >
       <Toaster position="top-center" reverseOrder={false} />
       <div className="max-w-6xl md:px-6 mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <p className={`text-lg font-semibold mb-2 ${isDark ? "text-blue-400" : "text-blue-600"}`}>
+          <p
+            className={`text-lg font-semibold mb-2 ${
+              isDark ? "text-blue-400" : "text-blue-600"
+            }`}
+          >
             Contact Us
           </p>
-          <h2 className={`text-4xl md:text-5xl font-bold mb-4 transition-colors duration-500 ${
-            isDark ? "text-slate-50" : "text-gray-900"
-          }`}>
-            Get In <span className={isDark ? "text-blue-400" : "text-blue-600"}>Touch</span>
+          <h2
+            className={`text-4xl md:text-5xl font-bold mb-4 transition-colors duration-500 ${
+              isDark ? "text-slate-50" : "text-gray-900"
+            }`}
+          >
+            Get In{" "}
+            <span className={isDark ? "text-blue-400" : "text-blue-600"}>
+              Touch
+            </span>
           </h2>
-          <div className={`w-24 h-1 mx-auto rounded-full mb-6 ${
-            isDark
-              ? "bg-linear-to-r from-blue-400 to-indigo-400"
-              : "bg-linear-to-r from-blue-600 to-indigo-600"
-          }`}></div>
-          <p className={`md:max-w-2xl w-full mx-auto text-center text-lg leading-relaxed ${
-            isDark ? "text-slate-300" : "text-gray-700"
-          }`}>
+          <div
+            className={`w-24 h-1 mx-auto rounded-full mb-6 ${
+              isDark
+                ? "bg-linear-to-r from-blue-400 to-indigo-400"
+                : "bg-linear-to-r from-blue-600 to-indigo-600"
+            }`}
+          ></div>
+          <p
+            className={`md:max-w-2xl w-full mx-auto text-center text-lg leading-relaxed ${
+              isDark ? "text-slate-300" : "text-gray-700"
+            }`}
+          >
             I'd love to hear from you! If you have any questions, comments or
             feedback, please use the form below or reach out through any of the
             contact methods.
@@ -154,15 +172,25 @@ function GetInTouch() {
         <div className="grid lg:grid-cols-3 gap-12">
           {/* Contact Information */}
           <div className="lg:col-span-1 space-y-6">
-            <div className={`backdrop-blur-md rounded-2xl p-8 shadow-xl transition-colors duration-500 ${
-              isDark
-                ? "bg-slate-800/60 border border-slate-700/50"
-                : "bg-white/70 border border-white/20"
-            }`}>
-              <h3 className={`text-2xl font-bold mb-6 ${isDark ? "text-slate-50" : "text-gray-900"}`}>
+            <div
+              className={`backdrop-blur-md rounded-2xl p-8 shadow-xl transition-colors duration-500 ${
+                isDark
+                  ? "bg-slate-800/60 border border-slate-700/50"
+                  : "bg-white/70 border border-white/20"
+              }`}
+            >
+              <h3
+                className={`text-2xl font-bold mb-6 ${
+                  isDark ? "text-slate-50" : "text-gray-900"
+                }`}
+              >
                 Let's Connect
               </h3>
-              <p className={`mb-8 leading-relaxed ${isDark ? "text-slate-300" : "text-gray-700"}`}>
+              <p
+                className={`mb-8 leading-relaxed ${
+                  isDark ? "text-slate-300" : "text-gray-700"
+                }`}
+              >
                 Ready to start your next project or just want to chat? I'm
                 always excited to connect with fellow developers and potential
                 collaborators.
@@ -182,13 +210,27 @@ function GetInTouch() {
                       <info.icon className="w-5 h-5" />
                     </div>
                     <div>
-                      <h4 className={`font-bold mb-1 ${isDark ? "text-slate-100" : "text-gray-900"}`}>
+                      <h4
+                        className={`font-bold mb-1 ${
+                          isDark ? "text-slate-100" : "text-gray-900"
+                        }`}
+                      >
                         {info.title}
                       </h4>
-                      <p className={`font-semibold ${isDark ? "text-blue-400" : "text-blue-600"}`}>
-                        {info.content}
-                      </p>
-                      <p className={`text-sm ${isDark ? "text-slate-400" : "text-gray-600"}`}>
+                      <a href={info?.link}>
+                        <p
+                          className={`font-semibold ${
+                            isDark ? "text-blue-400" : "text-blue-600"
+                          }`}
+                        >
+                          {info.content}
+                        </p>
+                      </a>
+                      <p
+                        className={`text-sm ${
+                          isDark ? "text-slate-400" : "text-gray-600"
+                        }`}
+                      >
                         {info.description}
                       </p>
                     </div>
@@ -200,11 +242,13 @@ function GetInTouch() {
 
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <div className={`backdrop-blur-md rounded-2xl p-8 shadow-xl transition-colors duration-500 ${
-              isDark
-                ? "bg-slate-800/60 border border-slate-700/50"
-                : "bg-white/70 border border-white/20"
-            }`}>
+            <div
+              className={`backdrop-blur-md rounded-2xl p-8 shadow-xl transition-colors duration-500 ${
+                isDark
+                  ? "bg-slate-800/60 border border-slate-700/50"
+                  : "bg-white/70 border border-white/20"
+              }`}
+            >
               <div className="space-y-6">
                 {/* Name and Email Row */}
                 <div className="grid md:grid-cols-2 gap-6">
@@ -215,7 +259,11 @@ function GetInTouch() {
                         isDark ? "text-slate-300" : "text-gray-700"
                       }`}
                     >
-                      <User className={`w-4 h-4 ${isDark ? "text-blue-400" : "text-blue-600"}`} />
+                      <User
+                        className={`w-4 h-4 ${
+                          isDark ? "text-blue-400" : "text-blue-600"
+                        }`}
+                      />
                       Your Name
                     </label>
                     <input
@@ -241,7 +289,11 @@ function GetInTouch() {
                         isDark ? "text-slate-300" : "text-gray-700"
                       }`}
                     >
-                      <Mail className={`w-4 h-4 ${isDark ? "text-blue-400" : "text-blue-600"}`} />
+                      <Mail
+                        className={`w-4 h-4 ${
+                          isDark ? "text-blue-400" : "text-blue-600"
+                        }`}
+                      />
                       Your Email
                     </label>
                     <input
@@ -269,7 +321,11 @@ function GetInTouch() {
                       isDark ? "text-slate-300" : "text-gray-700"
                     }`}
                   >
-                    <MessageSquare className={`w-4 h-4 ${isDark ? "text-blue-400" : "text-blue-600"}`} />
+                    <MessageSquare
+                      className={`w-4 h-4 ${
+                        isDark ? "text-blue-400" : "text-blue-600"
+                      }`}
+                    />
                     Message
                   </label>
                   <textarea
@@ -320,15 +376,23 @@ function GetInTouch() {
 
             {/* Quick Response Promise */}
             <div className="mt-6 text-center">
-              <div className={`inline-flex items-center gap-2 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg transition-colors duration-500 ${
-                isDark
-                  ? "bg-slate-800/60 border border-slate-700/50"
-                  : "bg-white/50 border border-white/20"
-              }`}>
-                <div className={`w-2 h-2 rounded-full animate-pulse ${
-                  isDark ? "bg-green-400" : "bg-green-500"
-                }`}></div>
-                <span className={`font-medium ${isDark ? "text-slate-300" : "text-gray-700"}`}>
+              <div
+                className={`inline-flex items-center gap-2 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg transition-colors duration-500 ${
+                  isDark
+                    ? "bg-slate-800/60 border border-slate-700/50"
+                    : "bg-white/50 border border-white/20"
+                }`}
+              >
+                <div
+                  className={`w-2 h-2 rounded-full animate-pulse ${
+                    isDark ? "bg-green-400" : "bg-green-500"
+                  }`}
+                ></div>
+                <span
+                  className={`font-medium ${
+                    isDark ? "text-slate-300" : "text-gray-700"
+                  }`}
+                >
                   Usually responds within 24 hours
                 </span>
               </div>

@@ -1,22 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { User, Code, GraduationCap, Award, Briefcase } from "lucide-react";
 import { useTheme } from "../ThemeContext/theme";
+import { API } from "../API/API";
 
 const AboutSection = () => {
   const { theme } = useTheme();
   const isDark = theme === "dark";
+  const [data, setData] = useState([]);
 
-  const skills = [
-    "Next.js",
-    "React.js",
-    "JavaScript",
-    "Node.js",
-    "Express",
-    "MongoDB",
-    "Git & Github",
-    "BitBucket",
-    "Postman",
-  ];
+   useEffect(() => {
+      handleAPI();
+    }, []);
+  
+    const handleAPI = async () => {
+      try {
+        const res = await API({ method: "GET", url: "/skill/get" });
+        if (res?.status == 200) {
+          setData(res?.data?.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }; 
 
   return (
     <div
@@ -120,7 +125,7 @@ const AboutSection = () => {
                 </div>
 
                 <div className="flex flex-wrap gap-2">
-                  {skills.map((skill, index) => (
+                  {data[0]?.skill.map((skill, index) => (
                     <span
                       key={index}
                       className="px-4 py-2 bg-linear-to-r from-blue-600 to-indigo-600 text-white rounded-full text-sm font-medium shadow-md hover:shadow-lg transform hover:scale-105 transition duration-200"
@@ -233,14 +238,14 @@ const AboutSection = () => {
                     isDark ? "text-blue-400" : "text-blue-600"
                   }`}
                 >
-                  1+
+                  {data[0]?.exp}+
                 </div>
                 <div
                   className={`font-medium ${
                     isDark ? "text-slate-300" : "text-gray-700"
                   }`}
                 >
-                  Years Experience
+                   Years Experience
                 </div>
               </div>
 
@@ -256,7 +261,7 @@ const AboutSection = () => {
                     isDark ? "text-green-400" : "text-green-600"
                   }`}
                 >
-                  5+
+                  {data[0]?.totalProject}+
                 </div>
                 <div
                   className={`font-medium ${

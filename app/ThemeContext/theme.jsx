@@ -1,10 +1,28 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
+import { API } from "../API/API";
 
 export const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState("light");
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    handleAPI();
+  }, []);
+
+  const handleAPI = async () => {
+    try {
+      const res = await API({ method: "GET", url: "/social-media/get" });
+      if (res?.status == 200) {
+        setData(res?.data?.data);
+        // console.log(res);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     const prefersDark = window.matchMedia("(prefers-color-scheme: dark)")
@@ -30,7 +48,7 @@ export function ThemeProvider({ children }) {
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, data, setData }}>
       {children}
     </ThemeContext.Provider>
   );

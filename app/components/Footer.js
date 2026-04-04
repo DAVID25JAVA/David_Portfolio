@@ -13,7 +13,7 @@ import {
 import { useTheme } from "../ThemeContext/theme";
 
 function Footer() {
-  const { theme } = useTheme();
+  const { theme, data } = useTheme();
   const isDark = theme === "dark";
 
   const getColorClasses = (color) => {
@@ -79,8 +79,8 @@ function Footer() {
             </h3>
 
             {[
-              { icon: Phone, label: "Phone", value: "+91 639327099", color: "green" },
-              { icon: Mail, label: "Email", value: "Dp2072000@gmail.com", color: "blue" },
+              { icon: Phone, label: "Phone", link:"tel:+91-6393274099", value: `+91-${data[0]?.number}`, color: "green" },
+              { icon: Mail, label: "Email", link:"mailto:Dp2072000@gmail.com", value:  `${data[0]?.email}`, color: "blue" },
               { icon: MapPin, label: "Location", value: "India", color: "purple" },
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-3 mb-4">
@@ -89,11 +89,14 @@ function Footer() {
                 </div>
                 <div>
                   <p className="text-sm opacity-70">{item.label}</p>
-                  <p className={`font-medium ${
-                    isDark ? "text-slate-200" : "text-gray-900"
+                  <a href={item?.link}>
+
+                  <p className={`font-semibold ${
+                    isDark ? "text-blue-400" : "text-blue-500 font-semibold"
                   }`}>
                     {item.value}
                   </p>
+                  </a>
                 </div>
               </div>
             ))}
@@ -131,11 +134,13 @@ function Footer() {
             </h3>
 
             {[
-              { icon: Linkedin, name: "LinkedIn", color: "blue" },
-              { icon: Github, name: "GitHub", color: "gray" },
+              { icon: Linkedin, link:"https://www.linkedin.com/in/david-pal-ba6a72246/", name: "LinkedIn", color: "blue" },
+              { icon: Github, link:"https://github.com/DAVID25JAVA", name: "GitHub", color: "gray" },
               { icon: Twitter, name: "Twitter", color: "sky" },
             ].map((social, i) => (
               <div key={i} className="flex items-center gap-3 mb-4">
+                <a href={social?.link} target="_blanka" className="flex items-center gap-3">
+
                 <div className={`p-2 rounded-lg ${getColorClasses(social.color)}`}>
                   <social.icon className="w-4 h-4" />
                 </div>
@@ -146,6 +151,7 @@ function Footer() {
                 >
                   {social.name}
                 </span>
+                </a>
                 <ExternalLink className="w-3 h-3 opacity-50" />
               </div>
             ))}
