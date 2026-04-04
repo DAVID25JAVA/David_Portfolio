@@ -7,7 +7,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`antialiased`}>
+      <body
+        className={`bg-linear-to-br from-slate-900 via-slate-800 to-slate-900`}
+      >
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
