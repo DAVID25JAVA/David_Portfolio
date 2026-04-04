@@ -17,7 +17,6 @@ export function ThemeProvider({ children }) {
       const res = await API({ method: "GET", url: "/social-media/get" });
       if (res?.status == 200) {
         setData(res?.data?.data);
-        // console.log(res);
       }
     } catch (error) {
       console.log(error);

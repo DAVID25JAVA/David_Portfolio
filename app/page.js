@@ -7,7 +7,6 @@ import GetInTouch from "./components/GetInTouch";
 import Footer from "./components/Footer";
 import { Toaster } from "react-hot-toast";
 import Experience from "./components/Experience";
-// import Service from "./components/Service";
 
 export default function Home() {
   return (
